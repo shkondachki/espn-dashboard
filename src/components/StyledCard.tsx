@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 /**
  * Emotion styled component (required: at least one beyond MUI sx).

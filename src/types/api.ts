@@ -20,7 +20,7 @@ export interface ESPNCompetitor {
   uid: string;
   type: string;
   order: number;
-  homeAway: 'home' | 'away';
+  homeAway: "home" | "away";
   team: {
     id: string;
     uid: string;

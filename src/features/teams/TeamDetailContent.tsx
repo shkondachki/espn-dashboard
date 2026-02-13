@@ -1,5 +1,5 @@
-import { Typography, Box } from '@mui/material';
-import type { ESPNTeam } from '@/types/api';
+import { Typography, Box } from "@mui/material";
+import type { ESPNTeam } from "@/types/api";
 
 interface TeamDetailContentProps {
   team: ESPNTeam;
@@ -20,7 +20,7 @@ export function TeamDetailContent({ team }: TeamDetailContentProps) {
       {team.links?.length ? (
         <Box sx={{ mt: 2 }}>
           <Typography variant="caption" color="text.secondary">
-            Links: {team.links.map((l) => l.text).join(', ')}
+            Links: {team.links.map((l) => l.text).join(", ")}
           </Typography>
         </Box>
       ) : null}

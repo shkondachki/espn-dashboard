@@ -1,18 +1,22 @@
-import { useState, useCallback } from 'react';
-import { Box, Typography } from '@mui/material';
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { useScoreboard } from '@/hooks/useScoreboard';
-import { QueryStates } from '@/components/QueryStates';
-import { ScoreboardList } from '@/features/scoreboard/ScoreboardList';
-import { GameDetailDrawer } from '@/features/scoreboard/GameDetailDrawer';
+import { useState, useCallback } from "react";
+import { Box, Typography } from "@mui/material";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useScoreboard } from "@/hooks/useScoreboard";
+import { QueryStates } from "@/components/QueryStates";
+import { ScoreboardList } from "@/features/scoreboard/ScoreboardList";
+import { GameDetailDrawer } from "@/features/scoreboard/GameDetailDrawer";
 
 export function DashboardPage() {
   const league = useAppSelector((s) => s.league.selectedLeague);
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
   const { data, isLoading, isError, error, refetch } = useScoreboard(league);
 
-  const isEmpty = !isLoading && !isError && (!data?.events || data.events.length === 0);
-  const openGame = useCallback((gameId: string) => setSelectedGameId(gameId), []);
+  const isEmpty =
+    !isLoading && !isError && (!data?.events || data.events.length === 0);
+  const openGame = useCallback(
+    (gameId: string) => setSelectedGameId(gameId),
+    [],
+  );
   const closeGame = useCallback(() => setSelectedGameId(null), []);
 
   return (

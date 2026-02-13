@@ -6,11 +6,11 @@ import {
   CircularProgress,
   Alert,
   Button,
-} from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import type { LeagueSlug } from '@/types/league';
-import { useTeam } from '@/hooks/useTeam';
-import { TeamDetailContent } from './TeamDetailContent';
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import type { LeagueSlug } from "@/types/league";
+import { useTeam } from "@/hooks/useTeam";
+import { TeamDetailContent } from "./TeamDetailContent";
 
 interface TeamDetailDrawerProps {
   league: LeagueSlug;
@@ -18,7 +18,11 @@ interface TeamDetailDrawerProps {
   onClose: () => void;
 }
 
-export function TeamDetailDrawer({ league, teamId, onClose }: TeamDetailDrawerProps) {
+export function TeamDetailDrawer({
+  league,
+  teamId,
+  onClose,
+}: TeamDetailDrawerProps) {
   const { data, isLoading, isError, error, refetch } = useTeam(league, teamId);
 
   return (
@@ -26,10 +30,17 @@ export function TeamDetailDrawer({ league, teamId, onClose }: TeamDetailDrawerPr
       anchor="right"
       open={Boolean(teamId)}
       onClose={onClose}
-      slotProps={{ backdrop: { sx: { backgroundColor: 'rgba(0,0,0,0.3)' } } }}
-      PaperProps={{ sx: { width: { xs: '100%', sm: 400, md: 480 } } }}
+      slotProps={{ backdrop: { sx: { backgroundColor: "rgba(0,0,0,0.3)" } } }}
+      PaperProps={{ sx: { width: { xs: "100%", sm: 400, md: 480 } } }}
     >
-      <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Box
+        sx={{
+          p: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <Typography variant="h6">Team Details</Typography>
         <IconButton onClick={onClose} aria-label="Close">
           <CloseIcon />
@@ -43,7 +54,10 @@ export function TeamDetailDrawer({ league, teamId, onClose }: TeamDetailDrawerPr
         )}
         {isError && error && (
           <Box py={2}>
-            <Alert severity="error" action={<Button onClick={() => refetch()}>Retry</Button>}>
+            <Alert
+              severity="error"
+              action={<Button onClick={() => refetch()}>Retry</Button>}
+            >
               {error.message}
             </Alert>
           </Box>

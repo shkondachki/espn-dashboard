@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import type { LeagueSlug } from '@/types/league';
-import { fetchGameSummary } from '@/api/espnClient';
+import { useQuery } from "@tanstack/react-query";
+import type { LeagueSlug } from "@/types/league";
+import { fetchGameSummary } from "@/api/espnClient";
 
-const QUERY_KEY = 'gameSummary';
+const QUERY_KEY = "gameSummary";
 
 export function useGameSummary(league: LeagueSlug, gameId: string | null) {
   return useQuery({

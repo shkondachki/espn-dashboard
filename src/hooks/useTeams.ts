@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import type { LeagueSlug } from '@/types/league';
-import { fetchTeams } from '@/api/espnClient';
+import { useQuery } from "@tanstack/react-query";
+import type { LeagueSlug } from "@/types/league";
+import { fetchTeams } from "@/api/espnClient";
 
-const QUERY_KEY = 'teams';
+const QUERY_KEY = "teams";
 
 export function useTeams(league: LeagueSlug) {
   return useQuery({

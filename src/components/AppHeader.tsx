@@ -1,6 +1,6 @@
-import { AppBar, Toolbar, Stack } from '@mui/material';
-import { HamburgerMenu } from '@refinedev/mui';
-import { LeagueSelector } from '@/components/LeagueSelector';
+import { AppBar, Toolbar, Stack } from "@mui/material";
+import { HamburgerMenu } from "@refinedev/mui";
+import { LeagueSelector } from "@/components/LeagueSelector";
 
 /**
  * Custom header for Refine ThemedLayoutV2.

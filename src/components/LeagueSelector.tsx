@@ -1,9 +1,9 @@
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { setLeague } from '@/store/leagueSlice';
-import type { LeagueSlug } from '@/types/league';
-import { LEAGUE_OPTIONS } from '@/types/league';
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { setLeague } from "@/store/leagueSlice";
+import type { LeagueSlug } from "@/types/league";
+import { LEAGUE_OPTIONS } from "@/types/league";
 
 export function LeagueSelector() {
   const league = useAppSelector((s) => s.league.selectedLeague);

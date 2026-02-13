@@ -1,16 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { LeagueSlug } from '@/types/league';
+import { createSlice } from "@reduxjs/toolkit";
+import type { LeagueSlug } from "@/types/league";
 
 interface LeagueState {
   selectedLeague: LeagueSlug;
 }
 
 const initialState: LeagueState = {
-  selectedLeague: 'nba',
+  selectedLeague: "nba",
 };
 
 const leagueSlice = createSlice({
-  name: 'league',
+  name: "league",
   initialState,
   reducers: {
     setLeague(state, action: { payload: LeagueSlug }) {

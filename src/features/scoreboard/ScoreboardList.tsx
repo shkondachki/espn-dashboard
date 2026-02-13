@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
-import type { ESPNEvent } from '@/types/api';
-import type { LeagueSlug } from '@/types/league';
-import { GameCard } from './GameCard';
+import { Box } from "@mui/material";
+import type { ESPNEvent } from "@/types/api";
+import type { LeagueSlug } from "@/types/league";
+import { GameCard } from "./GameCard";
 
 interface ScoreboardListProps {
   events: ESPNEvent[];
@@ -9,13 +9,17 @@ interface ScoreboardListProps {
   onSelectGame?: (gameId: string) => void;
 }
 
-export function ScoreboardList({ events,  onSelectGame }: ScoreboardListProps) {
+export function ScoreboardList({ events, onSelectGame }: ScoreboardListProps) {
   return (
     <Box
       sx={{
-        display: 'grid',
+        display: "grid",
         gap: 2,
-        gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
+        gridTemplateColumns: {
+          xs: "1fr",
+          sm: "repeat(2, 1fr)",
+          md: "repeat(3, 1fr)",
+        },
       }}
     >
       {events.map((event) => (

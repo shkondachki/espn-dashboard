@@ -1,5 +1,5 @@
-import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import type { ReactNode } from 'react';
+import { Box, Typography, Button, CircularProgress } from "@mui/material";
+import type { ReactNode } from "react";
 
 interface QueryStatesProps {
   isLoading: boolean;
@@ -16,13 +16,19 @@ export function QueryStates({
   isError,
   error,
   isEmpty = false,
-  emptyMessage = 'No data available.',
+  emptyMessage = "No data available.",
   onRetry,
   children,
 }: QueryStatesProps) {
   if (isLoading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight={200} p={3}>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight={200}
+        p={3}
+      >
         <CircularProgress />
       </Box>
     );
