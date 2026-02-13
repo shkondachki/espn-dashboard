@@ -18,21 +18,34 @@ export function formatGameStatus(
   return statusMap[statusName] || statusName;
 }
 
-// Assign color based on game state
-export function getStatusColor(
-  statusName: string,
-): "default" | "success" | "error" | "warning" | "info" {
-  if (
-    statusName.includes("FINAL") ||
-    statusName === "COMPLETED" ||
-    statusName.includes("FULL_TIME")
-  ) {
-    return "default";
-  }
-  if (statusName.includes("IN_PROGRESS")) return "success";
-  if (statusName.includes("HALFTIME") || statusName.includes("END_PERIOD"))
-    return "warning";
-  if (statusName.includes("DELAYED") || statusName.includes("POSTPONED"))
-    return "error";
-  return "info"; // Scheduled games
+export type StatusColor = "default" | "success" | "error" | "warning" | "info";
+
+const STATUS_COLOR_RULES: Array<{ color: StatusColor; matches: (statusName: string) => boolean; }> = [
+  {
+    color: "default",
+    matches: (s) =>
+      s.includes("FINAL") ||
+      s === "COMPLETED" ||
+      s.includes("FULL_TIME"),
+  },
+  {
+    color: "success",
+    matches: (s) => s.includes("IN_PROGRESS")
+  },
+  {
+    color: "warning",
+    matches: (s) => s.includes("HALFTIME") || s.includes("END_PERIOD"),
+  },
+  {
+    color: "error",
+    matches: (s) => s.includes("DELAYED") || s.includes("POSTPONED"),
+  },
+];
+
+/** Assign MUI color for chip based on game state. */
+export function getStatusColor(statusName: string): StatusColor {
+  return (
+    STATUS_COLOR_RULES.find((rule) => rule.matches(statusName))?.color ??
+    "info"
+  );
 }

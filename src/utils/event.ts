@@ -1,11 +1,15 @@
 import type { ESPNCompetitor, ESPNEvent } from "@/types/api";
-import { formatGameStatus, getStatusColor } from "@/utils/gameStatus";
+import {
+  type StatusColor,
+  formatGameStatus,
+  getStatusColor,
+} from "@/utils/gameStatus";
 
 export type CompetitorsAndStatus = {
   away: ESPNCompetitor | null;
   home: ESPNCompetitor | null;
   status: string;
-  statusColor: "default" | "success" | "error" | "warning" | "info";
+  statusColor: StatusColor;
 };
 
 /** Derive away/home competitors and display status from an ESPN event. */
