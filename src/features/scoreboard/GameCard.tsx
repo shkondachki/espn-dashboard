@@ -1,30 +1,11 @@
 import { Typography, Chip } from "@mui/material";
 import type { ESPNEvent } from "@/types/api";
 import { StyledCard } from "@/components/StyledCard";
-import { formatGameStatus, getStatusColor } from "@/utils/gameStatus";
+import { getCompetitorsAndStatus } from "@/utils/event";
 
 interface GameCardProps {
   event: ESPNEvent;
   onClick?: () => void;
-}
-
-function getCompetitorsAndStatus(event: ESPNEvent) {
-  const comp = event.competitions?.[0];
-
-  if (!comp) return { away: null, home: null, status: "", statusColor: "default" as const };
-
-  // ESPN API returns competitors as [away, home]
-  const [away, home] =
-    comp.competitors?.length === 2
-      ? [comp.competitors[0], comp.competitors[1]]
-      : [null, null];
-
-  const rawStatus = comp.status?.type?.name ?? "";
-  const displayClock = comp.status?.displayClock;
-  const status = formatGameStatus(rawStatus, displayClock);
-  const statusColor = getStatusColor(rawStatus);
-
-  return { away, home, status, statusColor };
 }
 
 export function GameCard({ event, onClick }: GameCardProps) {

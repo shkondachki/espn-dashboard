@@ -1,15 +1,15 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { RefineLayout } from '@/components/RefineLayout';
-import { DashboardPage } from '@/pages/DashboardPage';
-import { TeamsPage } from '@/pages/TeamsPage';
+import { createBrowserRouter } from "react-router-dom";
+import { RefineLayout } from "@/components/RefineLayout";
+import { DashboardPage } from "@/pages/DashboardPage";
+import { TeamsPage } from "@/pages/TeamsPage";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RefineLayout />,
     children: [
       { index: true, element: <DashboardPage /> },
-      { path: 'teams', element: <TeamsPage /> },
+      { path: "teams", element: <TeamsPage /> },
     ],
   },
 ]);

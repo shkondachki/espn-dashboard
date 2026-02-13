@@ -1,5 +1,8 @@
 // Convert ESPN API status codes to user-friendly text
-export function formatGameStatus(statusName: string, displayClock?: string): string {
+export function formatGameStatus(
+  statusName: string,
+  displayClock?: string,
+): string {
   const statusMap: Record<string, string> = {
     STATUS_SCHEDULED: "Scheduled",
     STATUS_IN_PROGRESS: displayClock || "Live",
@@ -17,7 +20,7 @@ export function formatGameStatus(statusName: string, displayClock?: string): str
 
 // Assign color based on game state
 export function getStatusColor(
-  statusName: string
+  statusName: string,
 ): "default" | "success" | "error" | "warning" | "info" {
   if (
     statusName.includes("FINAL") ||
@@ -27,7 +30,9 @@ export function getStatusColor(
     return "default";
   }
   if (statusName.includes("IN_PROGRESS")) return "success";
-  if (statusName.includes("HALFTIME") || statusName.includes("END_PERIOD")) return "warning";
-  if (statusName.includes("DELAYED") || statusName.includes("POSTPONED")) return "error";
+  if (statusName.includes("HALFTIME") || statusName.includes("END_PERIOD"))
+    return "warning";
+  if (statusName.includes("DELAYED") || statusName.includes("POSTPONED"))
+    return "error";
   return "info"; // Scheduled games
 }

@@ -33,11 +33,7 @@ export function DashboardPage() {
         onRetry={() => refetch()}
       >
         {data?.events && (
-          <ScoreboardList
-            events={data.events}
-            league={league}
-            onSelectGame={openGame}
-          />
+          <ScoreboardList events={data.events} onSelectGame={openGame} />
         )}
       </QueryStates>
       <GameDetailDrawer

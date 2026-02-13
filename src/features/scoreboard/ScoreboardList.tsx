@@ -1,11 +1,9 @@
 import { Box } from "@mui/material";
 import type { ESPNEvent } from "@/types/api";
-import type { LeagueSlug } from "@/types/league";
 import { GameCard } from "./GameCard";
 
 interface ScoreboardListProps {
   events: ESPNEvent[];
-  league: LeagueSlug;
   onSelectGame?: (gameId: string) => void;
 }
 

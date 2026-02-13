@@ -1,12 +1,16 @@
-import { Outlet } from 'react-router-dom';
-import { Refine } from '@refinedev/core';
-import { ThemedLayoutV2, ThemedTitleV2, useNotificationProvider } from '@refinedev/mui';
-import routerBindings from '@refinedev/react-router-v6';
-import { dataProvider } from '@/api/refineDataProvider';
-import { AppHeader } from '@/components/AppHeader';
+import { Outlet } from "react-router-dom";
+import { Refine } from "@refinedev/core";
+import {
+  ThemedLayoutV2,
+  ThemedTitleV2,
+  useNotificationProvider,
+} from "@refinedev/mui";
+import routerBindings from "@refinedev/react-router-v6";
+import { dataProvider } from "@/api/refineDataProvider";
+import { AppHeader } from "@/components/AppHeader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupsIcon from "@mui/icons-material/Groups";
-import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 
 export function RefineLayout() {
   return (
@@ -16,18 +20,18 @@ export function RefineLayout() {
       notificationProvider={useNotificationProvider}
       resources={[
         {
-          name: 'dashboard',
-          list: '/',
+          name: "dashboard",
+          list: "/",
           meta: {
-            label: 'Scoreboard',
+            label: "Scoreboard",
             icon: <DashboardIcon />,
           },
         },
         {
-          name: 'teams',
-          list: '/teams',
+          name: "teams",
+          list: "/teams",
           meta: {
-            label: 'Teams',
+            label: "Teams",
             icon: <GroupsIcon />,
           },
         },

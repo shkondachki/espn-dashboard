@@ -1,15 +1,6 @@
-import {
-  Drawer,
-  Typography,
-  Box,
-  IconButton,
-  CircularProgress,
-  Alert,
-  Button,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import type { LeagueSlug } from "@/types/league";
 import { useTeam } from "@/hooks/useTeam";
+import { DetailDrawer } from "@/components/DetailDrawer";
 import { TeamDetailContent } from "./TeamDetailContent";
 
 interface TeamDetailDrawerProps {
@@ -26,44 +17,16 @@ export function TeamDetailDrawer({
   const { data, isLoading, isError, error, refetch } = useTeam(league, teamId);
 
   return (
-    <Drawer
-      anchor="right"
+    <DetailDrawer
       open={Boolean(teamId)}
       onClose={onClose}
-      slotProps={{ backdrop: { sx: { backgroundColor: "rgba(0,0,0,0.3)" } } }}
-      PaperProps={{ sx: { width: { xs: "100%", sm: 400, md: 480 } } }}
+      title="Team Details"
+      isLoading={isLoading}
+      isError={isError}
+      error={error ?? null}
+      onRetry={() => refetch()}
     >
-      <Box
-        sx={{
-          p: 2,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Typography variant="h6">Team Details</Typography>
-        <IconButton onClick={onClose} aria-label="Close">
-          <CloseIcon />
-        </IconButton>
-      </Box>
-      <Box sx={{ px: 2, pb: 2 }}>
-        {isLoading && (
-          <Box display="flex" justifyContent="center" py={4}>
-            <CircularProgress />
-          </Box>
-        )}
-        {isError && error && (
-          <Box py={2}>
-            <Alert
-              severity="error"
-              action={<Button onClick={() => refetch()}>Retry</Button>}
-            >
-              {error.message}
-            </Alert>
-          </Box>
-        )}
-        {data?.team && !isLoading && <TeamDetailContent team={data.team} />}
-      </Box>
-    </Drawer>
+      {data?.team ? <TeamDetailContent team={data.team} /> : null}
+    </DetailDrawer>
   );
 }

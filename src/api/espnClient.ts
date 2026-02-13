@@ -8,6 +8,7 @@ import type {
   ScoreboardResponse,
   GameSummaryResponse,
   TeamsResponse,
+  ESPNTeam,
 } from "@/types/api";
 import { getLeaguePath } from "@/types/league";
 
@@ -61,7 +62,7 @@ export async function fetchTeams(league: LeagueSlug): Promise<TeamsResponse> {
 export async function fetchTeam(
   league: LeagueSlug,
   teamId: string,
-): Promise<{ team: import("@/types/api").ESPNTeam }> {
+): Promise<{ team: ESPNTeam }> {
   const url = buildUrl(league, `teams/${teamId}`);
-  return fetchJson<{ team: import("@/types/api").ESPNTeam }>(url);
+  return fetchJson<{ team: ESPNTeam }>(url);
 }

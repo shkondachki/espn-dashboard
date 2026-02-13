@@ -43,12 +43,7 @@ export function GameDetailContent({ data }: GameDetailContentProps) {
         </Typography>
       )}
       {status && (
-        <Chip
-          label={status}
-          color={statusColor}
-          size="small"
-          sx={{ mt: 1 }}
-        />
+        <Chip label={status} color={statusColor} size="small" sx={{ mt: 1 }} />
       )}
     </Box>
   );
