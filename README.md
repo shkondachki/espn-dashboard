@@ -71,13 +71,14 @@ A production-grade Sports Dashboard built with React, TypeScript, Refine, Materi
 
 - **Folder structure**
   - `api/` – ESPN client and Refine data provider
-  - `components/` – shared UI (e.g. LeagueSelector, QueryStates, StyledCard)
+  - `components/` – shared UI (e.g. LeagueSelector, QueryStates, StyledCard, DetailDrawer)
   - `features/` – scoreboard and teams (list, card, detail drawer/content)
   - `hooks/` – React Query hooks and Redux typed hooks
   - `pages/` – Refine list pages (Dashboard, Teams)
   - `providers/` – QueryClient, Redux, Theme, Router and Refine setup
   - `store/` – Redux slice (league)
   - `types/` – league and API response types
+  - `utils/` – pure helpers (league path, event/competitors status, game status formatting)
 
 - **Loading / error / empty**  
   Handled in `QueryStates` and reused on Dashboard and Teams. Drawers show loading and error with retry where applicable.
