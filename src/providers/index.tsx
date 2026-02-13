@@ -16,8 +16,6 @@ const queryClient = new QueryClient({
   },
 });
 
-console.log(store);
-
 export function AppProviders() {
   return (
     <ReduxProvider store={store}>

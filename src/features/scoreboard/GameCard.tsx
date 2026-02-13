@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
+import { Typography, Chip } from "@mui/material";
 import type { ESPNEvent } from "@/types/api";
 import { StyledCard } from "@/components/StyledCard";
+import { formatGameStatus, getStatusColor } from "@/utils/gameStatus";
 
 interface GameCardProps {
   event: ESPNEvent;
@@ -10,20 +11,24 @@ interface GameCardProps {
 function getCompetitorsAndStatus(event: ESPNEvent) {
   const comp = event.competitions?.[0];
 
-  if (!comp) return { away: null, home: null, status: "" };
+  if (!comp) return { away: null, home: null, status: "", statusColor: "default" as const };
 
+  // ESPN API returns competitors as [away, home]
   const [away, home] =
     comp.competitors?.length === 2
       ? [comp.competitors[0], comp.competitors[1]]
       : [null, null];
 
-  const status = comp.status?.type?.name ?? comp.status?.displayClock ?? "";
+  const rawStatus = comp.status?.type?.name ?? "";
+  const displayClock = comp.status?.displayClock;
+  const status = formatGameStatus(rawStatus, displayClock);
+  const statusColor = getStatusColor(rawStatus);
 
-  return { away, home, status };
+  return { away, home, status, statusColor };
 }
 
 export function GameCard({ event, onClick }: GameCardProps) {
-  const { away, home, status } = getCompetitorsAndStatus(event);
+  const { away, home, status, statusColor } = getCompetitorsAndStatus(event);
 
   return (
     <StyledCard
@@ -44,13 +49,12 @@ export function GameCard({ event, onClick }: GameCardProps) {
             {home.team.displayName} {home.score != null ? ` ${home.score}` : ""}
           </Typography>
           {status && (
-            <Typography
-              variant="caption"
-              color="text.secondary"
-              sx={{ mt: 1, display: "block" }}
-            >
-              {status}
-            </Typography>
+            <Chip
+              label={status}
+              color={statusColor}
+              size="small"
+              sx={{ mt: 1 }}
+            />
           )}
         </>
       ) : (

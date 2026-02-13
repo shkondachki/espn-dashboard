@@ -1,5 +1,6 @@
-import { Typography, Box, Divider } from "@mui/material";
+import { Typography, Box, Divider, Chip } from "@mui/material";
 import type { GameSummaryResponse } from "@/types/api";
+import { formatGameStatus, getStatusColor } from "@/utils/gameStatus";
 
 interface GameDetailContentProps {
   data: GameSummaryResponse;
@@ -16,7 +17,10 @@ export function GameDetailContent({ data }: GameDetailContentProps) {
   const comp = header.competitions[0];
   const competitors = comp.competitors ?? [];
   const venue = comp.venue?.fullName;
-  const status = comp.status?.type?.name ?? comp.status?.displayClock ?? "";
+  const rawStatus = comp.status?.type?.name ?? "";
+  const displayClock = comp.status?.displayClock;
+  const status = formatGameStatus(rawStatus, displayClock);
+  const statusColor = getStatusColor(rawStatus);
 
   return (
     <Box>
@@ -39,9 +43,12 @@ export function GameDetailContent({ data }: GameDetailContentProps) {
         </Typography>
       )}
       {status && (
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-          Status: {status}
-        </Typography>
+        <Chip
+          label={status}
+          color={statusColor}
+          size="small"
+          sx={{ mt: 1 }}
+        />
       )}
     </Box>
   );
