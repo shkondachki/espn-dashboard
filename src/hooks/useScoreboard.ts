@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import type { LeagueSlug } from "@/types/league";
 import { fetchScoreboard } from "@/api/espnClient";
-
-const QUERY_KEY = "scoreboard";
+import { queryKeys } from "@/queryKeys";
 
 export function useScoreboard(league: LeagueSlug) {
   return useQuery({
-    queryKey: [QUERY_KEY, league],
+    queryKey: queryKeys.scoreboard.list(league),
     queryFn: () => fetchScoreboard(league),
     staleTime: 60 * 1000,
   });

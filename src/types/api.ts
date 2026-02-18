@@ -68,10 +68,13 @@ export interface ScoreboardResponse {
   events: ESPNEvent[];
 }
 
+/** Unstructured JSON object from API (e.g. boxscore, news) we don't fully type. */
+export type JsonObject = Record<string, unknown>;
+
 export interface GameSummaryResponse {
-  boxscore?: unknown;
-  format?: unknown;
-  gameInfo?: unknown;
+  boxscore?: JsonObject;
+  format?: JsonObject;
+  gameInfo?: JsonObject;
   header?: {
     id: string;
     name: string;
@@ -81,8 +84,8 @@ export interface GameSummaryResponse {
       status?: { type: { name: string }; displayClock?: string };
     }>;
   };
-  news?: unknown;
-  roster?: unknown;
+  news?: JsonObject;
+  roster?: JsonObject;
   [key: string]: unknown;
 }
 
